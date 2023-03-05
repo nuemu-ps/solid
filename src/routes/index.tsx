@@ -1,6 +1,31 @@
-import { createSignal, For, Show } from "solid-js";
+import { JSX, createSignal, For, Show } from "solid-js";
 import { Title } from "solid-start";
 import Block from "~/components/Block";
+
+const DropDownMenu = ({ children }: { children: JSX.Element }) => {
+  const [appearance, setAppearance] = createSignal(false);
+
+  return (
+    <div style={{ display: "block" }}>
+      <div onClick={() => setAppearance(!appearance())}>{children}</div>
+      <Show when={appearance()}>
+        <div
+          style={{
+            position: "absolute",
+            width: "15vw",
+            "background-color": "white",
+            "box-shadow": "0px 0px 1px 1px lightgray",
+            padding: "5px",
+          }}
+        >
+          <div>Sample Menu 1</div>
+          <div>Sample Menu 2</div>
+          <div>Sample Menu 3</div>
+        </div>
+      </Show>
+    </div>
+  );
+};
 
 export default function Home() {
   const array = Array(10000)
@@ -29,11 +54,15 @@ export default function Home() {
                       "justify-content": "right",
                     }}
                   >
-                    <img src="/plus.svg" />
-                    <img
-                      src="/grid.svg"
-                      style={{ "margin-left": "5px", "margin-right": "5px" }}
-                    />
+                    <DropDownMenu>
+                      <img src="/plus.svg" />
+                    </DropDownMenu>
+                    <DropDownMenu>
+                      <img
+                        src="/grid.svg"
+                        style={{ "margin-left": "5px", "margin-right": "5px" }}
+                      />
+                    </DropDownMenu>
                   </div>
                 </Show>
                 <div onMouseOver={() => setFocusing(index())}>
