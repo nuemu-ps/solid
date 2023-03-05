@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+pnpm eslint --fix src/*
+pnpm prettier --write src/*
+git add .
