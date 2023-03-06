@@ -7,3 +7,8 @@ const TextBlock = (data: any) => {
 };
 
 export default TextBlock;
+
+export const initial = {
+  type: "Text",
+  data: "TextBlock",
+};
