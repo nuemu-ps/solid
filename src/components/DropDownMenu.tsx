@@ -9,12 +9,17 @@ const DropDownMenu = ({
 }) => {
   const [appearance, setAppearance] = createSignal(false);
 
+  const checkClickOutside = (event: MouseEvent) => {
+    setAppearance(false);
+  };
+
   return (
     <div style={{ display: "block" }}>
       <div onClick={() => setAppearance(!appearance())}>{menu_icon}</div>
       <Show when={appearance()}>
         <div
           style={{
+            "z-index": 10,
             position: "absolute",
             width: "15vw",
             "background-color": "white",
@@ -24,6 +29,17 @@ const DropDownMenu = ({
         >
           {children}
         </div>
+        <div
+          style={{
+            "z-index": 0,
+            position: "fixed",
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
+          onClick={checkClickOutside}
+        />
       </Show>
     </div>
   );

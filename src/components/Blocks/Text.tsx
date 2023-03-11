@@ -12,3 +12,5 @@ export const initial = {
   type: "Text",
   data: "TextBlock",
 };
+
+export const icon = "/icons/text.svg";
